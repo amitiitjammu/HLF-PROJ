@@ -1,0 +1,80 @@
+Peer1Org1
+
+# Create certificates for Peer1 Org 1 : AFLE_QAS
+
+	./organizations/fabric-ca/registerAFLE_QAS.sh
+	
+# Now run Docker Compose file
+	
+	docker-compose -f compose/docker/docker-compose-peer1org1.yaml up -d
+	
+# Now make the new peer join the channel "mychannel"
+
+	CORE_PEER_ADDRESS=localhost:51051 peer channel join -b channel-artifacts/iafhal.block
+	
+	
+Peer2Org1
+
+# Create certificates for Peer2 Org 1 / AFLE CATD
+
+	./organizations/fabric-ca/registerAFLE_CATD.sh
+	
+# Now run Docker Compose file
+	
+	docker-compose -f compose/docker/docker-compose-peer2org1.yaml up -d
+	
+# Now make the new peer join the channel "mychannel"
+
+	CORE_PEER_ADDRESS=localhost:61051 peer channel join -b channel-artifacts/iafhal.block
+	
+	
+	
+Peer1Org2
+
+# Create certificates for Peer1 Org 2 / HAL QAS
+
+	./organizations/fabric-ca/registerHAL_QAS.sh
+	
+# Now run Docker Compose file
+	
+	docker-compose -f compose/docker/docker-compose-peer1org2.yaml up -d
+	
+# Now make the new peer join the channel "mychannel"
+
+	CORE_PEER_ADDRESS=localhost:21051 peer channel join -b channel-artifacts/iafhal.block
+	
+	
+	
+	
+	
+Peer2Org2 / HAL_SHOP FLOOR
+
+# Create certificates for Peer1 Org 1
+
+	./organizations/fabric-ca/registerHAL_SHOPFLOOR.sh
+	
+# Now run Docker Compose file
+	
+	docker-compose -f compose/docker/docker-compose-peer2org2.yaml up -d
+	
+# Now make the new peer join the channel "mychannel"
+
+	CORE_PEER_ADDRESS=localhost:8051 peer channel join -b channel-artifacts/iafhal.block
+	
+	
+	
+	
+	
+Peer3Org2
+
+# Create certificates for Peer1 Org 1
+
+	./organizations/fabric-ca/registerHAL_PKN.sh
+	
+# Now run Docker Compose file
+	
+	docker-compose -f compose/docker/docker-compose-peer3org2.yaml up -d
+	
+# Now make the new peer join the channel "mychannel"
+
+	CORE_PEER_ADDRESS=localhost:8051 peer channel join -b channel-artifacts/iafhal.block
